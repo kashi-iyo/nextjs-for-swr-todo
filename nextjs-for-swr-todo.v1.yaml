@@ -83,13 +83,10 @@ components:
           schema:
             type: object
             properties:
-              todo:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  is_completed:
-                    type: string
+              todos:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
 tags:
   - name: Todo
   - name: User
