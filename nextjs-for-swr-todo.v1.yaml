@@ -5,7 +5,63 @@ info:
 servers:
   - url: 'http://localhost:3001/api/v1'
     description: local
-paths: {}
+paths:
+  /todos:
+    get:
+      summary: Get All Todos
+      tags:
+        - Todo
+      responses:
+        '200':
+          $ref: '#/components/responses/Todo'
+      operationId: get-todos
+    post:
+      summary: Create a Todo
+      tags:
+        - Todo
+      responses:
+        '200':
+          $ref: '#/components/responses/Todo'
+      operationId: create-todos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                todo:
+                  $ref: '#/components/schemas/Todo'
+  '/todos/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: Update a Todo
+      tags:
+        - Todo
+      responses:
+        '200':
+          $ref: '#/components/responses/Todo'
+      operationId: update-todo-by-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                todo:
+                  $ref: '#/components/schemas/Todo'
+    delete:
+      summary: Delete a Todo
+      tags:
+        - Todo
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-todos-id
 components:
   schemas:
     Todo:
@@ -19,6 +75,21 @@ components:
               type: string
             is_completed:
               type: boolean
+  responses:
+    Todo:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              todo:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  is_completed:
+                    type: string
 tags:
   - name: Todo
   - name: User
