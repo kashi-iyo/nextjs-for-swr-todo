@@ -88,7 +88,14 @@ components:
               todos:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Todo'
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    is_completed:
+                      type: boolean
 tags:
   - name: Todo
   - name: User
